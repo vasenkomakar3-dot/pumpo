@@ -1,0 +1,350 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0d0f1a; }
+  .app { font-family: 'Nunito', sans-serif; background: #0d0f1a; color: #fff; min-height: 100vh; overflow-x: hidden; }
+
+  /* NAV */
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 32px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .logo { font-size: 26px; font-weight: 900; color: #ff4d4d; letter-spacing: -0.5px; }
+  .logo span { color: #fff; }
+  .nav-right { display: flex; gap: 12px; align-items: center; }
+  .btn-ghost { background: none; border: 1.5px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 20px; border-radius: 50px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit; }
+  .btn-red { background: #ff4d4d; border: none; color: #fff; padding: 8px 22px; border-radius: 50px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit; }
+
+  /* HERO */
+  .hero { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 40px; padding: 60px 32px 40px; max-width: 1100px; margin: 0 auto; }
+  .hero-text h1 { font-size: 52px; font-weight: 900; line-height: 1.1; color: #fff; }
+  .hero-text h1 .accent { color: #ff4d4d; }
+  .hero-text p { font-size: 18px; color: rgba(255,255,255,0.55); margin: 18px 0 28px; line-height: 1.6; font-weight: 700; }
+  .hero-btns { display: flex; gap: 14px; }
+  .btn-big-red { background: #ff4d4d; border: none; color: #fff; padding: 15px 34px; border-radius: 50px; font-size: 17px; font-weight: 900; cursor: pointer; font-family: inherit; }
+  .btn-big-ghost { background: none; border: 2px solid rgba(255,255,255,0.2); color: #fff; padding: 15px 34px; border-radius: 50px; font-size: 17px; font-weight: 900; cursor: pointer; font-family: inherit; }
+  .hero-stats { display: flex; gap: 28px; margin-top: 36px; }
+  .stat { }
+  .stat-num { font-size: 28px; font-weight: 900; color: #ff4d4d; }
+  .stat-label { font-size: 13px; color: rgba(255,255,255,0.4); font-weight: 700; margin-top: 2px; }
+
+  /* MASCOT */
+  .mascot-area { position: relative; display: flex; justify-content: center; align-items: center; }
+  .mascot-bubble { position: absolute; top: 0; right: 30px; background: #1e2135; border: 1.5px solid rgba(255,77,77,0.4); border-radius: 16px; padding: 10px 16px; font-size: 14px; font-weight: 700; color: #fff; white-space: nowrap; }
+  .mascot-bubble::after { content: ''; position: absolute; bottom: -10px; left: 20px; border: 5px solid transparent; border-top-color: #1e2135; }
+  .bull-svg { width: 260px; height: 260px; }
+
+  /* FEATURES */
+  .section-title { text-align: center; font-size: 34px; font-weight: 900; color: #fff; margin-bottom: 8px; }
+  .section-sub { text-align: center; font-size: 16px; color: rgba(255,255,255,0.4); font-weight: 700; margin-bottom: 36px; }
+  .features { padding: 60px 32px; max-width: 1100px; margin: 0 auto; }
+  .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .feat-card { background: #12152a; border: 1px solid rgba(255,255,255,0.07); border-radius: 20px; padding: 28px 24px; transition: border-color 0.2s; }
+  .feat-card:hover { border-color: rgba(255,77,77,0.4); }
+  .feat-icon { font-size: 32px; margin-bottom: 14px; }
+  .feat-card h3 { font-size: 18px; font-weight: 900; color: #fff; margin-bottom: 8px; }
+  .feat-card p { font-size: 14px; color: rgba(255,255,255,0.45); font-weight: 700; line-height: 1.6; }
+
+  /* MAP PREVIEW */
+  .map-section { padding: 60px 32px; max-width: 1100px; margin: 0 auto; }
+  .map-wrap { background: #0a0d1f; border: 1px solid rgba(255,255,255,0.07); border-radius: 28px; padding: 32px; position: relative; overflow: hidden; }
+  .map-bg { position: absolute; inset: 0; opacity: 0.04; background-image: radial-gradient(circle, #ff4d4d 1px, transparent 1px); background-size: 40px 40px; }
+
+  /* PATH */
+  .path-container { position: relative; height: 420px; }
+  .path-svg { width: 100%; height: 100%; }
+
+  /* PROFILE SECTION */
+  .profile-section { padding: 40px 32px 60px; max-width: 1100px; margin: 0 auto; }
+  .profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .profile-card { background: #12152a; border: 1px solid rgba(255,255,255,0.07); border-radius: 24px; padding: 28px; }
+  .profile-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+  .avatar { width: 56px; height: 56px; border-radius: 50%; background: #ff4d4d; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 900; }
+  .profile-name { font-size: 18px; font-weight: 900; }
+  .profile-level { font-size: 13px; color: rgba(255,255,255,0.4); font-weight: 700; margin-top: 2px; }
+  .xp-bar-wrap { background: rgba(255,255,255,0.08); border-radius: 50px; height: 10px; overflow: hidden; margin: 6px 0 4px; }
+  .xp-bar { height: 100%; border-radius: 50px; background: #ff4d4d; width: 68%; }
+  .xp-label { font-size: 12px; color: rgba(255,255,255,0.4); font-weight: 700; }
+  .badges-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+  .badge { background: rgba(255,77,77,0.12); border: 1px solid rgba(255,77,77,0.25); border-radius: 50px; padding: 5px 13px; font-size: 12px; font-weight: 900; color: #ff7777; }
+  .streak-box { display: flex; align-items: center; gap: 12px; background: rgba(255,165,0,0.08); border: 1px solid rgba(255,165,0,0.2); border-radius: 14px; padding: 14px 18px; margin-top: 12px; }
+  .streak-num { font-size: 28px; font-weight: 900; color: #ffaa00; }
+  .streak-txt { font-size: 13px; color: rgba(255,255,255,0.5); font-weight: 700; }
+  .stats-mini { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+  .mini-stat { background: rgba(255,255,255,0.04); border-radius: 12px; padding: 12px 14px; }
+  .mini-num { font-size: 22px; font-weight: 900; color: #fff; }
+  .mini-label { font-size: 12px; color: rgba(255,255,255,0.4); font-weight: 700; margin-top: 2px; }
+
+  /* CTA */
+  .cta { text-align: center; padding: 60px 32px; }
+  .cta h2 { font-size: 42px; font-weight: 900; margin-bottom: 16px; }
+  .cta p { font-size: 17px; color: rgba(255,255,255,0.45); font-weight: 700; margin-bottom: 32px; }
+</style>
+
+<div class="app">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="logo">Pump<span>o</span></div>
+    <div class="nav-right">
+      <button class="btn-ghost">Войти</button>
+      <button class="btn-red">Начать бесплатно</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-text">
+      <h1>Учись торговать<br>как <span class="accent">профи</span> 📈</h1>
+      <p>Прокачай трейдинг с нуля. Уровни, задачи и твой бычий маскот Bull — всегда рядом.</p>
+      <div class="hero-btns">
+        <button class="btn-big-red">Начать бесплатно</button>
+        <button class="btn-big-ghost">Как это работает?</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num">12K+</div><div class="stat-label">Трейдеров</div></div>
+        <div class="stat"><div class="stat-num">48</div><div class="stat-label">Уроков</div></div>
+        <div class="stat"><div class="stat-num">5★</div><div class="stat-label">Рейтинг</div></div>
+      </div>
+    </div>
+
+    <!-- BULL MASCOT SVG -->
+    <div class="mascot-area">
+      <div class="mascot-bubble">Bullish настрой? Let's go! 🚀</div>
+      <svg class="bull-svg" viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
+        <!-- shadow -->
+        <ellipse cx="130" cy="248" rx="60" ry="10" fill="rgba(0,0,0,0.3)"/>
+        <!-- body -->
+        <ellipse cx="130" cy="165" rx="52" ry="60" fill="#8B2020"/>
+        <!-- belly -->
+        <ellipse cx="130" cy="178" rx="32" ry="38" fill="#A83030"/>
+        <!-- head -->
+        <circle cx="130" cy="100" r="52" fill="#8B2020"/>
+        <!-- snout -->
+        <ellipse cx="130" cy="118" rx="26" ry="18" fill="#6B1818"/>
+        <!-- nostrils -->
+        <circle cx="120" cy="118" r="5" fill="#4a0f0f"/>
+        <circle cx="140" cy="118" r="5" fill="#4a0f0f"/>
+        <!-- eyes -->
+        <circle cx="112" cy="90" r="11" fill="#fff"/>
+        <circle cx="148" cy="90" r="11" fill="#fff"/>
+        <circle cx="115" cy="91" r="7" fill="#1a0000"/>
+        <circle cx="151" cy="91" r="7" fill="#1a0000"/>
+        <circle cx="117" cy="89" r="2.5" fill="#fff"/>
+        <circle cx="153" cy="89" r="2.5" fill="#fff"/>
+        <!-- angry brows -->
+        <path d="M104 78 Q112 72 122 76" stroke="#4a0f0f" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path d="M138 76 Q148 72 156 78" stroke="#4a0f0f" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <!-- horns -->
+        <path d="M85 65 Q70 30 95 42" stroke="#e0d0b0" stroke-width="10" fill="none" stroke-linecap="round"/>
+        <path d="M175 65 Q190 30 165 42" stroke="#e0d0b0" stroke-width="10" fill="none" stroke-linecap="round"/>
+        <!-- ears -->
+        <circle cx="82" cy="88" r="14" fill="#7a1c1c"/>
+        <circle cx="178" cy="88" r="14" fill="#7a1c1c"/>
+        <!-- hair tuft -->
+        <path d="M118 52 Q130 35 142 52" stroke="#6B1818" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <!-- arms -->
+        <path d="M82 155 Q55 140 50 165" stroke="#8B2020" stroke-width="18" fill="none" stroke-linecap="round"/>
+        <path d="M178 155 Q205 140 210 165" stroke="#8B2020" stroke-width="18" fill="none" stroke-linecap="round"/>
+        <!-- fists -->
+        <circle cx="50" cy="168" r="13" fill="#7a1c1c"/>
+        <circle cx="210" cy="168" r="13" fill="#7a1c1c"/>
+        <!-- legs -->
+        <path d="M108 220 Q100 238 96 248" stroke="#7a1c1c" stroke-width="16" fill="none" stroke-linecap="round"/>
+        <path d="M152 220 Q160 238 164 248" stroke="#7a1c1c" stroke-width="16" fill="none" stroke-linecap="round"/>
+        <!-- chart in hand -->
+        <rect x="212" y="145" width="34" height="28" rx="4" fill="#1a2040" stroke="#ff4d4d" stroke-width="1.5"/>
+        <polyline points="216,167 222,158 228,162 234,152 240,145" stroke="#ff4d4d" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <div class="features">
+    <div class="section-title">Почему Pumpo?</div>
+    <div class="section-sub">Всё что нужно новичку — в одном месте</div>
+    <div class="features-grid">
+      <div class="feat-card">
+        <div class="feat-icon">🗺️</div>
+        <h3>Карта уровней</h3>
+        <p>Проходи уроки по шагам как в игре. Каждый уровень открывает новые знания о рынке.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🔥</div>
+        <h3>Стрики и XP</h3>
+        <p>Учись каждый день, поддерживай стрик и получай опыт. Лидерборд среди друзей.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">📊</div>
+        <h3>Реальные кейсы</h3>
+        <p>Разбирай настоящие торговые ситуации: свечи, паттерны, новости рынка.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🤖</div>
+        <h3>Bull всегда с тобой</h3>
+        <p>Маскот подбадривает, объясняет сложные вещи и отмечает твои достижения.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🏆</div>
+        <h3>Достижения</h3>
+        <p>Собирай бейджи за пройденные темы. Покажи своим, что ты уже не новичок.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">📱</div>
+        <h3>Везде и всегда</h3>
+        <p>Учись в телефоне, на ноуте, в транспорте — прогресс синхронизируется.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAP PREVIEW -->
+  <div class="map-section">
+    <div class="section-title">Твой путь к профи</div>
+    <div class="section-sub">Карта уровней — от новичка до уверенного трейдера</div>
+    <div class="map-wrap">
+      <div class="map-bg"></div>
+      <div class="path-container">
+        <svg class="path-svg" viewBox="0 0 700 420" xmlns="http://www.w3.org/2000/svg">
+          <!-- grid dots -->
+          <defs>
+            <pattern id="dots" x="0" y="0" width="35" height="35" patternUnits="userSpaceOnUse">
+              <circle cx="2" cy="2" r="1.5" fill="rgba(255,255,255,0.06)"/>
+            </pattern>
+          </defs>
+          <rect width="700" height="420" fill="url(#dots)"/>
+
+          <!-- PATH LINE -->
+          <path d="M100,380 Q180,320 260,310 Q340,300 350,240 Q360,180 300,150 Q240,120 280,70 Q310,40 400,50 Q490,60 520,100 Q560,150 600,120" stroke="rgba(255,77,77,0.3)" stroke-width="3" fill="none" stroke-dasharray="8,6"/>
+          <path d="M100,380 Q180,320 260,310 Q340,300 350,240 Q360,180 300,150 Q240,120 280,70 Q310,40 400,50 Q490,60 520,100" stroke="#ff4d4d" stroke-width="4" fill="none"/>
+
+          <!-- LEVELS - completed -->
+          <!-- Lvl 1 -->
+          <circle cx="100" cy="380" r="28" fill="#ff4d4d" stroke="#ff7777" stroke-width="3"/>
+          <text x="100" y="384" text-anchor="middle" fill="#fff" font-size="13" font-weight="900" font-family="Nunito,sans-serif">1</text>
+          <text x="100" y="415" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="11" font-family="Nunito,sans-serif">Основы</text>
+
+          <!-- Lvl 2 -->
+          <circle cx="200" cy="340" r="28" fill="#ff4d4d" stroke="#ff7777" stroke-width="3"/>
+          <text x="200" y="344" text-anchor="middle" fill="#fff" font-size="13" font-weight="900" font-family="Nunito,sans-serif">2</text>
+          <text x="200" y="375" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="11" font-family="Nunito,sans-serif">Свечи</text>
+
+          <!-- Lvl 3 - CURRENT -->
+          <circle cx="310" cy="300" r="32" fill="#1e2135" stroke="#ff4d4d" stroke-width="4"/>
+          <circle cx="310" cy="300" r="22" fill="#ff4d4d" opacity="0.15"/>
+          <text x="310" y="304" text-anchor="middle" fill="#ff4d4d" font-size="14" font-weight="900" font-family="Nunito,sans-serif">3</text>
+          <text x="310" y="340" text-anchor="middle" fill="#ff7777" font-size="11" font-weight="700" font-family="Nunito,sans-serif">Паттерны</text>
+          <!-- current pulse -->
+          <circle cx="310" cy="300" r="38" fill="none" stroke="#ff4d4d" stroke-width="1.5" opacity="0.3"/>
+
+          <!-- Lvl 4 - locked -->
+          <circle cx="350" cy="230" r="26" fill="#1a1d2e" stroke="rgba(255,255,255,0.15)" stroke-width="2"/>
+          <text x="350" y="234" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="13" font-weight="900" font-family="Nunito,sans-serif">4</text>
+          <text x="350" y="264" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="11" font-family="Nunito,sans-serif">Тренды</text>
+
+          <!-- Lvl 5 - locked -->
+          <circle cx="300" cy="155" r="26" fill="#1a1d2e" stroke="rgba(255,255,255,0.1)" stroke-width="2"/>
+          <text x="300" y="159" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="13" font-weight="900" font-family="Nunito,sans-serif">5</text>
+          <text x="300" y="189" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="11" font-family="Nunito,sans-serif">Риск</text>
+
+          <!-- Lvl 6 - locked -->
+          <circle cx="350" cy="75" r="26" fill="#1a1d2e" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+          <text x="350" y="79" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="13" font-weight="900" font-family="Nunito,sans-serif">6</text>
+          <text x="350" y="109" text-anchor="middle" fill="rgba(255,255,255,0.15)" font-size="11" font-family="Nunito,sans-serif">Стратегии</text>
+
+          <!-- Lvl 7 boss - locked -->
+          <circle cx="510" cy="95" r="30" fill="#1a1d2e" stroke="rgba(255,165,0,0.2)" stroke-width="2" stroke-dasharray="5,4"/>
+          <text x="510" y="92" text-anchor="middle" fill="rgba(255,165,0,0.4)" font-size="10" font-weight="900" font-family="Nunito,sans-serif">BOSS</text>
+          <text x="510" y="106" text-anchor="middle" fill="rgba(255,165,0,0.4)" font-size="12" font-weight="900" font-family="Nunito,sans-serif">🏆</text>
+          <text x="510" y="133" text-anchor="middle" fill="rgba(255,165,0,0.3)" font-size="11" font-family="Nunito,sans-serif">Профи</text>
+
+          <!-- MINI BULL at current position -->
+          <g transform="translate(290,256)">
+            <circle r="14" fill="#8B2020" stroke="#ff4d4d" stroke-width="2"/>
+            <circle cx="-4" cy="-2" r="3" fill="#fff"/>
+            <circle cx="4" cy="-2" r="3" fill="#fff"/>
+            <path d="-8,-10 Q-14,-20 -10,-14" stroke="#e0d0b0" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <path d="8,-10 Q14,-20 10,-14" stroke="#e0d0b0" stroke-width="3" fill="none" stroke-linecap="round"/>
+          </g>
+
+          <!-- decorative chart lines bg -->
+          <polyline points="580,200 600,170 620,185 640,155 660,160 680,130" stroke="rgba(255,77,77,0.15)" stroke-width="2" fill="none"/>
+          <polyline points="20,150 40,170 60,140 80,160" stroke="rgba(255,77,77,0.1)" stroke-width="2" fill="none"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROFILE SECTION -->
+  <div class="profile-section">
+    <div class="section-title">Твой профиль</div>
+    <div class="section-sub">Отслеживай прогресс, хвастайся достижениями</div>
+    <div class="profile-grid">
+      <div class="profile-card">
+        <div class="profile-header">
+          <div class="avatar">🐂</div>
+          <div>
+            <div class="profile-name">TradingBull_99</div>
+            <div class="profile-level">Уровень 3 · Паттерны</div>
+          </div>
+        </div>
+        <div class="xp-label" style="color:rgba(255,255,255,0.45);font-size:12px;font-weight:700;margin-bottom:4px;">XP: 680 / 1000</div>
+        <div class="xp-bar-wrap"><div class="xp-bar"></div></div>
+        <div class="xp-label">До следующего уровня: 320 XP</div>
+        <div class="badges-row">
+          <div class="badge">🕯️ Мастер свечей</div>
+          <div class="badge">📈 Первый профит</div>
+          <div class="badge">🔥 7-дн стрик</div>
+        </div>
+        <div class="streak-box">
+          <div class="streak-num">🔥 14</div>
+          <div>
+            <div style="font-weight:900;font-size:14px;">Дневной стрик</div>
+            <div class="streak-txt">Не пропускай — ты на огне!</div>
+          </div>
+        </div>
+      </div>
+      <div class="profile-card">
+        <div style="font-size:16px;font-weight:900;margin-bottom:14px;color:rgba(255,255,255,0.7);">Статистика</div>
+        <div class="stats-mini">
+          <div class="mini-stat">
+            <div class="mini-num">24</div>
+            <div class="mini-label">Уроков пройдено</div>
+          </div>
+          <div class="mini-stat">
+            <div class="mini-num">91%</div>
+            <div class="mini-label">Точность ответов</div>
+          </div>
+          <div class="mini-stat">
+            <div class="mini-num">680</div>
+            <div class="mini-label">Всего XP</div>
+          </div>
+          <div class="mini-stat">
+            <div class="mini-num">#42</div>
+            <div class="mini-label">В лидерборде</div>
+          </div>
+        </div>
+        <div style="margin-top:18px;font-size:13px;font-weight:700;color:rgba(255,255,255,0.35);margin-bottom:10px;">Прогресс по темам</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:700;margin-bottom:4px;"><span style="color:rgba(255,255,255,0.6)">Основы рынка</span><span style="color:#ff4d4d">100%</span></div>
+            <div class="xp-bar-wrap"><div class="xp-bar" style="width:100%;background:#ff4d4d"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:700;margin-bottom:4px;"><span style="color:rgba(255,255,255,0.6)">Японские свечи</span><span style="color:#ff4d4d">80%</span></div>
+            <div class="xp-bar-wrap"><div class="xp-bar" style="width:80%"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:700;margin-bottom:4px;"><span style="color:rgba(255,255,255,0.6)">Паттерны</span><span style="color:#ffaa00">45%</span></div>
+            <div class="xp-bar-wrap"><div class="xp-bar" style="width:45%;background:#ffaa00"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta">
+    <h2>Готов стать <span style="color:#ff4d4d">Pumpo</span> трейдером?</h2>
+    <p>Присоединяйся к тысячам трейдеров. Бесплатно, прямо сейчас.</p>
+    <button class="btn-big-red">Начать обучение 🚀</button>
+  </div>
+
+</div>
